@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Buy groceries",
+    "description": "Milk, eggs, bread, cheese",
+    "dueDate": "2023-04-07"
+  },
+  {
+    "title": "Clean the house",
+    "description": "Vacuum, dust, mop floors",
+    "dueDate": "2023-04-10"
+  },
+  {
+    "title": "Pay bills",
+    "description": "Electricity, water, internet",
+    "dueDate": "2023-04-12"
+  },
+  {
+    "title": "Go to the gym",
+    "description": "Cardio and weights",
+    "dueDate": "2023-04-09"
+  },
+  {
+    "title": "Finish project",
+    "description": "Code review and documentation",
+    "dueDate": "2023-04-15"
+  },
+  {
+    "title": "Call mom",
+    "description": "Check up on her",
+    "dueDate": "2023-04-08"
+  },
+  {
+    "title": "Read a book",
+    "description": "Crime and Punishment by Fyodor Dostoevsky",
+    "dueDate": "2023-04-13"
+  },
+  {
+    "title": "Plan vacation",
+    "description": "Research destinations and book flights",
+    "dueDate": "2023-05-01"
+  },
+  {
+    "title": "Attend meeting",
+    "description": "Discuss project progress with team",
+    "dueDate": "2023-04-11"
+  },
+  {
+    "title": "Write report",
+    "description": "Analyze data and present findings",
+    "dueDate": "2023-04-14"
+  }
+]

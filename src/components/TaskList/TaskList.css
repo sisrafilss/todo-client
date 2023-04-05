@@ -1,3 +1,7 @@
+body.active-modal {
+  overflow-y: hidden;
+}
+
 .modal,
 .overlay {
   width: 100vw;
