@@ -1,12 +1,12 @@
 import React from "react";
 import closeIcon from "../../img/close.png";
 
-const AddTask = ({ toggleModal }) => {
+const AddTask = ({ toggleAddModal }) => {
   return (
     <div className="flex flex-col w-full bg-white py-8 px-12 rounded relative">
       <h2 className="mb-3  text-2xl font-medium">Add Task</h2>
       <img
-        onClick={toggleModal}
+        onClick={toggleAddModal}
         src={closeIcon}
         className="w-3 h-3 absolute top-4 right-4 cursor-pointer"
         alt=""

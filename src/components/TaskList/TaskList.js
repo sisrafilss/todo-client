@@ -3,12 +3,18 @@ import "./TaskList.css";
 import update from "../../img/edit.png";
 import dlete from "../../img/delete.png";
 import AddTask from "../AddTask/AddTask";
+import EditTask from "../EditTask/EditTask";
 
 const TaskList = () => {
-  const [modal, setModal] = useState(false);
+  const [addModal, setAddModal] = useState(false);
+  const [editModal, setEditModal] = useState(false);
 
-  const toggleModal = () => {
-    setModal(!modal);
+  const toggleAddModal = () => {
+    setAddModal(!addModal);
+  };
+
+  const toggleEditModal = () => {
+    setEditModal(!editModal);
   };
 
   return (
@@ -17,7 +23,7 @@ const TaskList = () => {
         <div className="flex justify-between ">
           <h2 className="text-2xl font-bold">Task List</h2>
           <button
-            onClick={toggleModal}
+            onClick={toggleAddModal}
             className="px-2 py-2 bg-slate-600 text-white rounded font-medium text-base"
           >
             Add New Task
@@ -48,72 +54,7 @@ const TaskList = () => {
                   src={update}
                   alt=""
                   title="Edit"
-                />
-                <img
-                  className="w-6 h-6 cursor-pointer "
-                  src={dlete}
-                  alt=""
-                  title="Delete"
-                />
-              </td>
-            </tr>
-            <tr className="cursor-pointer">
-              <td className="px-6 py-3 border ">1</td>
-              <td className="px-6 py-3 border ">Hefzul Quran</td>
-              <td className="px-6 py-3 border ">
-                Review the 1st para. First recite ...
-              </td>
-              <td className="px-6 py-3 border ">5 Apr 2023</td>
-              <td className="px-6 py-3 border flex justify-between">
-                <img
-                  className="w-6 h-6 cursor-pointer mr-2"
-                  src={update}
-                  alt=""
-                  title="Edit"
-                />
-                <img
-                  className="w-6 h-6 cursor-pointer "
-                  src={dlete}
-                  alt=""
-                  title="Delete"
-                />
-              </td>
-            </tr>
-            <tr className="cursor-pointer">
-              <td className="px-6 py-3 border ">1</td>
-              <td className="px-6 py-3 border ">Hefzul Quran</td>
-              <td className="px-6 py-3 border ">
-                Review the 1st para. First recite ...
-              </td>
-              <td className="px-6 py-3 border ">5 Apr 2023</td>
-              <td className="px-6 py-3 border flex justify-between">
-                <img
-                  className="w-6 h-6 cursor-pointer mr-2"
-                  src={update}
-                  alt=""
-                  title="Edit"
-                />
-                <img
-                  className="w-6 h-6 cursor-pointer "
-                  src={dlete}
-                  alt=""
-                  title="Delete"
-                />
-              </td>
-            </tr>
-            <tr className="cursor-pointer">
-              <td className="px-6 py-3 border ">1</td>
-              <td className="px-6 py-3 border ">Hefzul Quran</td>
-              <td className="px-6 py-3 border ">
-                Review the 1st para. First recite ...
-              </td>
-              <td className="px-6 py-3 border ">5 Apr 2023</td>
-              <td className="px-6 py-3 border flex justify-between">
-                <img
-                  className="w-6 h-6 cursor-pointer mr-2"
-                  src={update}
-                  alt=""
-                  title="Edit"
+                  onClick={toggleEditModal}
                 />
                 <img
                   className="w-6 h-6 cursor-pointer "
@@ -127,11 +68,21 @@ const TaskList = () => {
         </table>
       </div>
 
-      {modal && (
+      {addModal && (
         <div className="modal">
           <div className="overlay">
             <div className="modal-content">
-              <AddTask toggleModal={toggleModal} />
+              <AddTask toggleAddModal={toggleAddModal} />
+            </div>
+          </div>
+        </div>
+      )}
+
+      {editModal && (
+        <div className="modal">
+          <div className="overlay">
+            <div className="modal-content">
+              <EditTask toggleEditModal={toggleEditModal} />
             </div>
           </div>
         </div>
