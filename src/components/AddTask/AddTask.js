@@ -42,7 +42,7 @@ const AddTask = ({ toggleAddModal }) => {
         />
         <input
           type="submit"
-          className="px-2 py-2 bg-slate-600 text-white rounded font-medium text-base cursor-pointer"
+          className="px-2 py-2 bg-slate-600 text-white rounded font-medium text-base cursor-pointer hover:bg-slate-700"
           // onClick={toggleModal}
           value="Add"
         />

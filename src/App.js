@@ -7,6 +7,7 @@ import TaskList from "./components/TaskList/TaskList";
 import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
 import Registration from "./components/Registration/Registration";
+import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,7 +29,12 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <AuthProvider>
+      {" "}
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;

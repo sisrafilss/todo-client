@@ -78,6 +78,7 @@ const tasksSample = [
       "I need to write a report based on some data that I have collected. I will analyze the data and present my findings in a clear and concise manner. I will also make some recommendations based on the results.",
     dueDate: "2023-04-14",
   },
+  
 ];
 
 const TaskList = () => {
@@ -133,12 +134,12 @@ const TaskList = () => {
 
   return (
     <>
-      <div className="w-2/3 mx-auto mt-16">
+      <div className="w-2/3 mx-auto mt-28 pb-10">
         <div className="flex justify-between ">
           <h2 className="text-2xl font-bold">Task List</h2>
           <button
             onClick={toggleAddModal}
-            className="px-2 py-2 bg-slate-600 text-white rounded font-medium text-base"
+            className="px-4 py-2 bg-slate-600 text-white rounded font-medium text-base hover:bg-slate-700"
           >
             Add New Task
           </button>
@@ -158,7 +159,7 @@ const TaskList = () => {
             {tasksSample.map((task, idx) => (
               <tr
                 key={idx}
-                className="cursor-pointer"
+                className="cursor-pointer hover:bg-slate-100"
                 onClick={(event) => handleTaskDetail(task, event)}
               >
                 <td className="px-6 py-3 border ">{idx + 1}</td>

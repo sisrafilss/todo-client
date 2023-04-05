@@ -1,11 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Header from "../Header/Header";
+import useAuth from "../../hooks/useAuth";
 
 function Login() {
+  const { loginWithGoogle } = useAuth();
+
+  // handle login with google
+  const handleLoginWithGoogle = () => {
+    loginWithGoogle();
+  };
+
   return (
     <>
-      <Header />
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <div className="w-full max-w-md">
           <form className="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4">
@@ -39,7 +45,7 @@ function Login() {
             </div>
             <div className="flex items-center justify-between">
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                className="px-4 py-2 bg-slate-600 text-white rounded font-medium text-base hover:bg-slate-700"
                 type="button"
               >
                 Login
@@ -47,25 +53,10 @@ function Login() {
               <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
                 type="button"
+                onClick={handleLoginWithGoogle}
               >
                 Login with Google
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="#fff"
-                  stroke="#fff"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="feather feather-google ml-2"
-                >
-                  <path d="M21.6,10.5H12v3.9h5.4c-.6,2.1-2.4,3.6-4.5,3.6c-.3,0-.6,0-.9-.1v4c1.1,.3 2.3,.5 3.5,.5c8.4,0 15.1,-7 15.1,-15.6c0,-1-.1,-2-.2,-3z"></path>
-                  <path d="M12,21a9,9 0 1,0 -9,-9a9,9 0 0,0 9,9z"></path>
-                </svg>
               </button>
-              
             </div>
           </form>
           <p className="text-center text-gray-500 text-xs">

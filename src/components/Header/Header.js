@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <nav className="flex justify-between px-20 py-4 text-white bg-slate-600 w-full">
+    <nav className="flex fixed top-0 justify-between px-20 py-4 text-white bg-slate-600 w-full">
       <div>
-        <a className="text-xl font-semibold" href="#">
+        <Link to="/" className="text-xl font-semibold">
           Todo App
-        </a>
+        </Link>
       </div>
 
       <ul className="flex mx-auto ">
