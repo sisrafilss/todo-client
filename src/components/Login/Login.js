@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import Warning from "../Warning/Warning";
 
 function Login() {
   const navigate = useNavigate();
-  const { loginWithGoogle, setLoading } = useAuth();
+  const { loginWithGoogle, loginUser, setLoading, authError, setAuthError } = useAuth();
+
+  console.log(authError);
 
   // handle login with google
   const handleLoginWithGoogle = (navigate) => {
@@ -12,13 +16,28 @@ function Login() {
     loginWithGoogle(navigate);
   };
 
+  // handle login with email and password
+  const handleLogin = (email, password, navigate) => {
+    setLoading(true);
+    loginUser(email, password, navigate);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const onSubmit = (data) => handleLogin(data?.email, data?.password, navigate);
+
   return (
     <>
       <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
         <div className="w-full max-w-md">
-          
-          <form className="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4">
-          <h2 className="text-2xl font-semibold mb-6">Login</h2>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4"
+          >
+            <h2 className="text-2xl font-semibold mb-6">Login</h2>
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -31,7 +50,8 @@ function Login() {
                 id="email"
                 type="email"
                 placeholder="Email"
-                
+                {...register("email")}
+                required
               />
             </div>
             <div className="mb-6">
@@ -46,15 +66,17 @@ function Login() {
                 id="password"
                 type="password"
                 placeholder="Password"
+                {...register("password")}
+                required
               />
             </div>
+
             <div className="flex items-center justify-between">
-              <button
-                className="px-4 py-2 bg-slate-600 text-white rounded font-medium text-base hover:bg-slate-700"
-                type="button"
-              >
-                Login
-              </button>
+              <input
+                className="px-4 cursor-pointer py-2 bg-slate-600 text-white rounded font-medium text-base hover:bg-slate-700"
+                type="submit"
+                value="Login"
+              />
               <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
                 type="button"
@@ -64,6 +86,9 @@ function Login() {
               </button>
             </div>
           </form>
+
+          {authError && <Warning authError={authError} setAuthError={setAuthError} />}
+
           <p className="text-center text-gray-500 text-xs">
             Don't have an account?{" "}
             <Link

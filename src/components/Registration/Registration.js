@@ -2,10 +2,12 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
+import Warning from "../Warning/Warning";
 
 const Registration = () => {
   const navigate = useNavigate();
-  const { loginWithGoogle, registration, setLoading } = useAuth();
+  const { loginWithGoogle, registration, setLoading, authError, setAuthError } =
+    useAuth();
 
   // handle login with google
   const handleLoginWithGoogle = (navigate) => {
@@ -98,6 +100,8 @@ const Registration = () => {
           >
             Login with Google
           </button>
+
+          {authError && <Warning authError={authError} setAuthError={setAuthError} />}
 
           <div className="mt-6 text-gray-700">
             Already registered?{" "}

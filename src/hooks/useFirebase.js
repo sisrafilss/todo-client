@@ -6,6 +6,7 @@ import {
   signOut,
   createUserWithEmailAndPassword,
   updateProfile,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
@@ -68,6 +69,26 @@ const useFirebase = () => {
       });
   };
 
+  // Login user using email and password
+  const loginUser = (email, password, navigate) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        setAuthError("");
+
+        // Redirect user where he/she wanted to go
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setAuthError(errorMessage);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   // Observing user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -95,8 +116,10 @@ const useFirebase = () => {
     loading,
     loginWithGoogle,
     registration,
+    loginUser,
     logOut,
     setLoading,
+    setAuthError
   };
 };
 
