@@ -4,6 +4,8 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   signOut,
+  createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
@@ -37,6 +39,35 @@ const useFirebase = () => {
       });
   };
 
+  // Register new user using email and password
+  const registration = (name, email, password, navigate) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        setAuthError("");
+
+        // Set user to user state
+        const newUser = { email, displayName: name };
+        setUser(newUser);
+
+        // Set user to firebase
+        updateProfile(auth.currentUser, {
+          displayName: name,
+        })
+          .then(() => {
+            navigate("/");
+          })
+          .catch((error) => {
+            setAuthError(error);
+          });
+      })
+      .catch((error) => {
+        setAuthError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   // Observing user state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -58,7 +89,15 @@ const useFirebase = () => {
       });
   };
 
-  return { user, authError, loading, loginWithGoogle, logOut, setLoading };
+  return {
+    user,
+    authError,
+    loading,
+    loginWithGoogle,
+    registration,
+    logOut,
+    setLoading,
+  };
 };
 
 export default useFirebase;
