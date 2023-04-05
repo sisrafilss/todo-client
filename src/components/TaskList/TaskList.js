@@ -109,9 +109,16 @@ const TaskList = () => {
     setModalActive(!modalActive);
   };
 
-  const handleTaskDetail = (task) => {
-    toggleTaskDetailModal();
-    setTaskDetail(task);
+  const handleTaskDetail = (task, event) => {
+    if (
+      event.target.nodeName === "TD" &&
+      event.target !== event.currentTarget.lastChild
+    ) {
+      toggleTaskDetailModal();
+      setTaskDetail(task);
+    }
+
+    console.log(event);
   };
 
   if (modalActive) {
@@ -152,7 +159,7 @@ const TaskList = () => {
               <tr
                 key={idx}
                 className="cursor-pointer"
-                onClick={() => handleTaskDetail(task)}
+                onClick={(event) => handleTaskDetail(task, event)}
               >
                 <td className="px-6 py-3 border ">{idx + 1}</td>
                 <td className="px-6 py-3 border ">{task.title}</td>
@@ -202,13 +209,24 @@ const TaskList = () => {
         </div>
       )}
 
-      {dialogBox && <DialogBox toggleDialogBox={toggleDialogBox} />}
+      {dialogBox && (
+        <div className="modal">
+          <div className="overlay">
+            <div className="modal-content">
+              <DialogBox toggleDialogBox={toggleDialogBox} />
+            </div>
+          </div>
+        </div>
+      )}
 
       {showTaskDetail && (
         <div className="modal">
           <div className="overlay">
             <div className="modal-content">
-              <TaskDetail taskDetail={taskDetail} toggleTaskDetailModal={toggleTaskDetailModal} />
+              <TaskDetail
+                taskDetail={taskDetail}
+                toggleTaskDetailModal={toggleTaskDetailModal}
+              />
             </div>
           </div>
         </div>
