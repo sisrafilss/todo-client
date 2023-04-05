@@ -4,10 +4,12 @@ import update from "../../img/edit.png";
 import dlete from "../../img/delete.png";
 import AddTask from "../AddTask/AddTask";
 import EditTask from "../EditTask/EditTask";
+import DialogBox from "../DialogBox/DialogBox";
 
 const TaskList = () => {
   const [addModal, setAddModal] = useState(false);
   const [editModal, setEditModal] = useState(false);
+  const [dialogBox, setDialogBox] = useState(false);
 
   const toggleAddModal = () => {
     setAddModal(!addModal);
@@ -15,6 +17,10 @@ const TaskList = () => {
 
   const toggleEditModal = () => {
     setEditModal(!editModal);
+  };
+
+  const toggleDialogBox = () => {
+    setDialogBox(!dialogBox);
   };
 
   return (
@@ -61,6 +67,7 @@ const TaskList = () => {
                   src={dlete}
                   alt=""
                   title="Delete"
+                  onClick={toggleDialogBox}
                 />
               </td>
             </tr>
@@ -87,6 +94,8 @@ const TaskList = () => {
           </div>
         </div>
       )}
+
+      {dialogBox && <DialogBox toggleDialogBox={toggleDialogBox} />}
     </>
   );
 };
