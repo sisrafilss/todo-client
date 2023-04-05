@@ -8,16 +8,17 @@ import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
 import Registration from "./components/Registration/Registration";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import PrivateRoute from "./routes/PrivateRoute";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Home />,
-    },
-    {
-      path: "/home",
-      element: <Home />,
+      element: (
+        <PrivateRoute>
+          <Home />
+        </PrivateRoute>
+      ),
     },
     {
       path: "/login",

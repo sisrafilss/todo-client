@@ -1,13 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 function Login() {
-  const { loginWithGoogle } = useAuth();
+  const navigate = useNavigate();
+  const { loginWithGoogle, loading, setLoading } = useAuth();
 
   // handle login with google
-  const handleLoginWithGoogle = () => {
-    loginWithGoogle();
+  const handleLoginWithGoogle = (navigate) => {
+    setLoading(true);
+    loginWithGoogle(navigate);
   };
 
   return (
@@ -53,7 +55,7 @@ function Login() {
               <button
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline flex items-center justify-center"
                 type="button"
-                onClick={handleLoginWithGoogle}
+                onClick={() => handleLoginWithGoogle(navigate)}
               >
                 Login with Google
               </button>
