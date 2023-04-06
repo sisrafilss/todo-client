@@ -95,6 +95,7 @@ const TaskList = () => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [deleteTask, setDeleteTask] = useState(false);
   const [delTaskId, setDelTaskId] = useState("");
+  const [editingTask, setEditingTask] = useState({});
 
   const toggleAddModal = () => {
     setAddModal(!addModal);
@@ -126,7 +127,14 @@ const TaskList = () => {
       setTaskDetail(task);
     }
 
-    console.log(event);
+    // console.log(event);
+  };
+
+  // handle edit modal
+  const handleEditModal = (task) => {
+    setEditingTask(task);
+    toggleEditModal();
+    console.log(task);
   };
 
   // Hide scroll bar while modal is active
@@ -140,8 +148,9 @@ const TaskList = () => {
     axios
       .get("http://localhost:5000/all-tasks")
       .then((res) => setTasks(res.data));
-  }, [addModal, delTaskId]);
+  }, [addModal, delTaskId, editModal]);
 
+  // handle delete task
   const handleDeleteTask = (id) => {
     setDialogBox(true);
     setDelTaskId(id);
@@ -201,7 +210,7 @@ const TaskList = () => {
                     src={update}
                     alt=""
                     title="Edit"
-                    onClick={toggleEditModal}
+                    onClick={() => handleEditModal(task)}
                   />
                   <img
                     className="w-6 h-6 cursor-pointer "
@@ -235,7 +244,12 @@ const TaskList = () => {
         <div className="modal">
           <div className="overlay">
             <div className="modal-content">
-              <EditTask toggleEditModal={toggleEditModal} />
+              <EditTask
+                editingTask={editingTask}
+                toggleEditModal={toggleEditModal}
+                setShowErrorMessage={setShowErrorMessage}
+                setShowSuccessMessage={setShowSuccessMessage}
+              />
             </div>
           </div>
         </div>
