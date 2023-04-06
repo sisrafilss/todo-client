@@ -10,7 +10,6 @@ import {
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import initializeAuthentication from "../Firebase/firebase.init";
-import { useNavigate } from "react-router-dom";
 
 initializeAuthentication();
 
@@ -31,7 +30,6 @@ const useFirebase = () => {
         const user = result.user;
         setAuthError("");
         setUser(user);
-        console.log(user);
         setLoading(false);
       })
       .catch((error) => {
@@ -119,7 +117,7 @@ const useFirebase = () => {
     loginUser,
     logOut,
     setLoading,
-    setAuthError
+    setAuthError,
   };
 };
 

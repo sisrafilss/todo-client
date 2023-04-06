@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -6,9 +6,9 @@ import Warning from "../Warning/Warning";
 
 function Login() {
   const navigate = useNavigate();
-  const { loginWithGoogle, loginUser, setLoading, authError, setAuthError } = useAuth();
+  const { loginWithGoogle, loginUser, setLoading, authError, setAuthError } =
+    useAuth();
 
-  console.log(authError);
 
   // handle login with google
   const handleLoginWithGoogle = (navigate) => {
@@ -22,11 +22,7 @@ function Login() {
     loginUser(email, password, navigate);
   };
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => handleLogin(data?.email, data?.password, navigate);
 
   return (
@@ -87,7 +83,9 @@ function Login() {
             </div>
           </form>
 
-          {authError && <Warning authError={authError} setAuthError={setAuthError} />}
+          {authError && (
+            <Warning authError={authError} setAuthError={setAuthError} />
+          )}
 
           <p className="text-center text-gray-500 text-xs">
             Don't have an account?{" "}

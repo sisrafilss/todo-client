@@ -2,26 +2,24 @@ import React from "react";
 import closeIcon from "../../img/close.png";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import useAuth from "../../hooks/useAuth";
 
 const AddTask = ({
   toggleAddModal,
   setShowSuccessMessage,
   setShowErrorMessage,
 }) => {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
+  const { user } = useAuth();
+
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
+    const addEmail = { email: user?.email, ...data };
     axios
-      .post("http://localhost:5000/add-task", data)
+      .post("http://localhost:5000/add-task", addEmail)
       .then((res) => {
         if (res?.data?.insertedId) {
           toggleAddModal();
           setShowSuccessMessage(true);
-          console.log(res?.data?.insertedId);
         }
       })
       .catch((error) => {

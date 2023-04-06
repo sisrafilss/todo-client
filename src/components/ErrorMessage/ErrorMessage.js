@@ -7,7 +7,7 @@ const ErrorMessage = ({ showErrorMessage, setShowErrorMessage }) => {
       setShowErrorMessage(false);
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [setShowErrorMessage]);
   return (
     <div
       className={`${

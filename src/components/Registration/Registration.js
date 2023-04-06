@@ -22,11 +22,7 @@ const Registration = () => {
   };
 
   // React Hook Form
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => handleRegistration(data, navigate);
 
   return (
@@ -101,7 +97,9 @@ const Registration = () => {
             Login with Google
           </button>
 
-          {authError && <Warning authError={authError} setAuthError={setAuthError} />}
+          {authError && (
+            <Warning authError={authError} setAuthError={setAuthError} />
+          )}
 
           <div className="mt-6 text-gray-700">
             Already registered?{" "}

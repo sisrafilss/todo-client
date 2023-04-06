@@ -8,14 +8,8 @@ const EditTask = ({
   setShowSuccessMessage,
   setShowErrorMessage,
 }) => {
-  console.log(editingTask);
-
   // handle form
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
     const updatedTask = {
       _id: editingTask._id,
@@ -70,7 +64,7 @@ const EditTask = ({
           />
           <input
             type="submit"
-            className="px-2 py-2 bg-slate-600 text-white rounded font-medium text-base hover:bg-slate-700"
+            className="px-2 py-2 bg-slate-600 cursor-pointer text-white rounded font-medium text-base hover:bg-slate-700"
             // onClick={toggleModal}
             value="Update"
           />

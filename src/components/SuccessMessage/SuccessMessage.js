@@ -7,7 +7,7 @@ const SuccessMessage = ({ showSuccessMessage, setShowSuccessMessage }) => {
       setShowSuccessMessage(false);
     }, 2000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [setShowSuccessMessage]);
 
   return (
     <div
