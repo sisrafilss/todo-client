@@ -88,7 +88,7 @@ const TaskList = () => {
 
   return (
     <>
-      <div className="w-2/3 mx-auto mt-28 pb-10">
+      <div className="lg:w-2/3 md:w-3/4 md:mx-auto w-full px-7  mt-28 pb-10">
         {/* Show success message when an operation is completed */}
         {showSuccessMessage && (
           <SuccessMessage
@@ -115,7 +115,7 @@ const TaskList = () => {
 
           <button
             onClick={toggleAddModal}
-            className="px-4 py-2 bg-slate-600 text-white rounded font-medium text-base hover:bg-slate-700"
+            className="px-4 py-2 inline  bg-slate-600 text-white rounded font-medium text-base hover:bg-slate-700"
           >
             Add New Task
           </button>
@@ -123,14 +123,14 @@ const TaskList = () => {
 
         {/* Show the task list table if atl least one task */}
         {tasks.length > 0 && (
-          <table className="table-auto mt-6 w-full">
+          <table className="table-auto mt-6 w-full border border-slate-400">
             <thead className="bg-gray-200">
               <tr className="border">
-                <th className="px-6 py-3 border ">#</th>
-                <th className="px-6 py-3 border">Title</th>
-                <th className="px-6 py-3 border">Description</th>
-                <th className="px-6 py-3 border">Due Date</th>
-                <th className="px-6 py-3 border">Action</th>
+                <th className="md:px-6 md:py-3 px-3 py-1 border ">#</th>
+                <th className="md:px-6 md:py-3 px-3 py-1 border">Title</th>
+                <th className="md:px-6 md:py-3 px-3 py-1 border">Description</th>
+                <th className="md:px-6 md:py-3 px-3 py-1 border">Due Date</th>
+                <th className="md:px-6 md:py-3 px-3 py-1 border">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -140,13 +140,13 @@ const TaskList = () => {
                   className="cursor-pointer hover:bg-slate-100"
                   onClick={(event) => handleTaskDetail(task, event)}
                 >
-                  <td className="px-6 py-3 border ">{idx + 1}</td>
-                  <td className="px-6 py-3 border ">{task.title}</td>
-                  <td className="px-6 py-3 border ">
+                  <td className="md:px-6 md:py-3 px-3 py-1 border ">{idx + 1}</td>
+                  <td className="md:px-6 md:py-3 px-3 py-1 border ">{task.title}</td>
+                  <td className="md:px-6 md:py-3 px-3 py-1 border ">
                     {task.description.slice(0, 40)} [...]
                   </td>
-                  <td className="px-6 py-3 border ">{task.dueDate}</td>
-                  <td className="px-6 py-3 border flex justify-between">
+                  <td className="md:px-6 md:py-3 px-3 py-1 border ">{task.dueDate}</td>
+                  <td className="md:px-6 md:py-3 px-3 py-1 md:flex-row flex justify-between flex-col">
                     <img
                       className="w-6 h-6 cursor-pointer mr-2"
                       src={update}
