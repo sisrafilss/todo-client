@@ -93,6 +93,8 @@ const TaskList = () => {
   const [tasks, setTasks] = useState([]);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [deleteTask, setDeleteTask] = useState(false);
+  const [delTaskId, setDelTaskId] = useState("");
 
   const toggleAddModal = () => {
     setAddModal(!addModal);
@@ -138,7 +140,12 @@ const TaskList = () => {
     axios
       .get("http://localhost:5000/all-tasks")
       .then((res) => setTasks(res.data));
-  }, [addModal]);
+  }, [addModal, delTaskId]);
+
+  const handleDeleteTask = (id) => {
+    setDialogBox(true);
+    setDelTaskId(id);
+  };
 
   return (
     <>
@@ -201,7 +208,7 @@ const TaskList = () => {
                     src={dlete}
                     alt=""
                     title="Delete"
-                    onClick={toggleDialogBox}
+                    onClick={() => handleDeleteTask(task?._id)}
                   />
                 </td>
               </tr>
@@ -238,7 +245,13 @@ const TaskList = () => {
         <div className="modal">
           <div className="overlay">
             <div className="modal-content">
-              <DialogBox toggleDialogBox={toggleDialogBox} />
+              <DialogBox
+                delTaskId={delTaskId}
+                toggleDialogBox={toggleDialogBox}
+                setDelTaskId={setDelTaskId}
+                setShowErrorMessage={setShowErrorMessage}
+                setShowSuccessMessage={setShowSuccessMessage}
+              />
             </div>
           </div>
         </div>

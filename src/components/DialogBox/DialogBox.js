@@ -1,6 +1,28 @@
+import axios from "axios";
 import React from "react";
 
-const DialogBox = ({ toggleDialogBox }) => {
+const DialogBox = ({
+  delTaskId,
+  toggleDialogBox,
+  setDelTaskId,
+  setShowErrorMessage,
+  setShowSuccessMessage,
+}) => {
+  const handleDeleteTask = () => {
+    toggleDialogBox();
+    axios
+      .delete(`http://localhost:5000/task-list/${delTaskId}`)
+      .then((res) => {
+        setDelTaskId("");
+        // if (res?.data?.insertedId) {
+          setShowSuccessMessage(true);
+        // }
+      })
+      .catch((error) => {
+        setShowErrorMessage(true);
+      });
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="fixed inset-0 bg-gray-600 opacity-50"></div>
@@ -10,13 +32,13 @@ const DialogBox = ({ toggleDialogBox }) => {
         <div className="flex justify-around">
           <button
             className="px-4 py-2 rounded-lg border border-gray-400 text-gray-700 font-semibold"
-              onClick={toggleDialogBox}
+            onClick={toggleDialogBox}
           >
             No
           </button>
           <button
             className="px-4 py-2 mr-4 rounded-lg bg-red-600 text-white font-semibold"
-            //   onClick={onDelete}
+            onClick={handleDeleteTask}
           >
             Yes
           </button>

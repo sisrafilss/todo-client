@@ -18,7 +18,7 @@ const SuccessMessage = ({ showSuccessMessage, setShowSuccessMessage }) => {
     >
       <span className="block sm:inline">
         <CheckCircleIcon className="w-5 h-5 inline-block mr-2" />
-        Task added successfully.
+        Success!
       </span>
     </div>
   );
