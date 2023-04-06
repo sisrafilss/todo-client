@@ -88,7 +88,7 @@ const TaskList = () => {
 
   return (
     <>
-      <div className="lg:w-2/3 md:w-3/4 md:mx-auto w-full px-7  mt-28 pb-10">
+      <div className="lg:w-2/3 md:w-3/4 md:mx-auto w-full md:px-7 px-0  mt-28 pb-10">
         {/* Show success message when an operation is completed */}
         {showSuccessMessage && (
           <SuccessMessage
@@ -105,7 +105,7 @@ const TaskList = () => {
           />
         )}
 
-        <div className="flex justify-between ">
+        <div className="flex md:justify-between justify-around">
           {/* Conditionally show the task list heading or not */}
           {tasks.length ? (
             <h2 className="text-2xl font-bold">Task List</h2>
@@ -123,7 +123,7 @@ const TaskList = () => {
 
         {/* Show the task list table if atl least one task */}
         {tasks.length > 0 && (
-          <table className="table-auto mt-6 w-full border border-slate-400">
+          <table className="table-auto mt-6 w-full border border-slate-400 max-w-fit">
             <thead className="bg-gray-200">
               <tr className="border">
                 <th className="md:px-6 md:py-3 px-3 py-1 border ">#</th>
@@ -148,7 +148,7 @@ const TaskList = () => {
                   <td className="md:px-6 md:py-3 px-3 py-1 border ">{task.dueDate}</td>
                   <td className="md:px-6 md:py-3 px-3 py-1 md:flex-row flex justify-between flex-col">
                     <img
-                      className="w-6 h-6 cursor-pointer mr-2"
+                      className="w-6 h-6 cursor-pointer mr-2 md:mb-0 mb-3 "
                       src={update}
                       alt=""
                       title="Edit"

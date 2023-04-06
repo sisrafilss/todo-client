@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { CheckCircleIcon } from "@heroicons/react/solid";
+import "./SuccessMessage.css";
 
 const SuccessMessage = ({ showSuccessMessage, setShowSuccessMessage }) => {
   useEffect(() => {
@@ -13,7 +14,7 @@ const SuccessMessage = ({ showSuccessMessage, setShowSuccessMessage }) => {
     <div
       className={`${
         showSuccessMessage ? "opacity-100" : "opacity-0"
-      } transition-opacity duration-500 ease-in-out bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative w-96 mx-auto`}
+      } info text-center transition-opacity duration-500 ease-in-out bg-green-100  border-green-400 text-green-700 px-4 py-3 rounded relative  mx-auto `}
       role="alert"
     >
       <span className="block sm:inline">

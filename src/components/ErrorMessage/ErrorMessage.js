@@ -12,7 +12,7 @@ const ErrorMessage = ({ showErrorMessage, setShowErrorMessage }) => {
     <div
       className={`${
         showErrorMessage ? "opacity-100" : "opacity-0"
-      } transition-opacity duration-500 ease-in-out bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative w-96 mx-auto`}
+      } transition-opacity duration-500 ease-in-out bg-yellow-100 info text-yellow-700 px-4 py-3 rounded relative mx-auto`}
       role="alert"
     >
       <span className="block sm:inline">
