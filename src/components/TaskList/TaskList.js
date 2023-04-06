@@ -76,7 +76,7 @@ const TaskList = () => {
   // load all tasks from db
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/all-tasks/${user?.email}`)
+      .get(`https://todo-server-lv0x.onrender.com/all-tasks/${user?.email}`)
       .then((res) => setTasks(res.data));
   }, [addModal, delTaskId, editModal, user?.email]);
 

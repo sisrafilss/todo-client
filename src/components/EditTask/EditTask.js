@@ -16,7 +16,7 @@ const EditTask = ({
       ...data,
     };
     axios
-      .put("http://localhost:5000/edit-task", updatedTask)
+      .put("https://todo-server-lv0x.onrender.com/edit-task", updatedTask)
       .then((res) => {
         if (res.data.modifiedCount) {
           toggleEditModal();

@@ -15,7 +15,7 @@ const AddTask = ({
   const onSubmit = (data) => {
     const addEmail = { email: user?.email, ...data };
     axios
-      .post("http://localhost:5000/add-task", addEmail)
+      .post("https://todo-server-lv0x.onrender.com/add-task", addEmail)
       .then((res) => {
         if (res?.data?.insertedId) {
           toggleAddModal();

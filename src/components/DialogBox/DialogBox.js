@@ -11,7 +11,7 @@ const DialogBox = ({
   const handleDeleteTask = () => {
     toggleDialogBox();
     axios
-      .delete(`http://localhost:5000/task-list/${delTaskId}`)
+      .delete(`https://todo-server-lv0x.onrender.com/task-list/${delTaskId}`)
       .then((res) => {
         setDelTaskId("");
         // if (res?.data?.insertedId) {
