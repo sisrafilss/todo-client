@@ -1,15 +1,34 @@
 import React from "react";
 import closeIcon from "../../img/close.png";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
-const AddTask = ({ toggleAddModal }) => {
+const AddTask = ({
+  toggleAddModal,
+  setShowSuccessMessage,
+  setShowErrorMessage,
+}) => {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    axios
+      .post("http://localhost:5000/add-task", data)
+      .then((res) => {
+        if (res?.data?.insertedId) {
+          toggleAddModal();
+          setShowSuccessMessage(true);
+          console.log(res?.data?.insertedId);
+        }
+      })
+      .catch((error) => {
+        toggleAddModal();
+        setShowErrorMessage(true);
+      });
+  };
 
   return (
     <div className="flex flex-col w-full bg-white py-8 px-12 rounded relative">

@@ -6,6 +6,8 @@ import AddTask from "../AddTask/AddTask";
 import EditTask from "../EditTask/EditTask";
 import DialogBox from "../DialogBox/DialogBox";
 import TaskDetail from "../TaskDetail/TaskDetail";
+import SuccessMessage from "../SuccessMessage/SuccessMessage";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
 
 const tasksSample = [
   {
@@ -78,7 +80,6 @@ const tasksSample = [
       "I need to write a report based on some data that I have collected. I will analyze the data and present my findings in a clear and concise manner. I will also make some recommendations based on the results.",
     dueDate: "2023-04-14",
   },
-  
 ];
 
 const TaskList = () => {
@@ -89,6 +90,8 @@ const TaskList = () => {
   const [showTaskDetail, setShowTaskDetail] = useState(false);
   const [taskDetail, setTaskDetail] = useState({});
   const [tasks, setTasks] = useState([]);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
 
   const toggleAddModal = () => {
     setAddModal(!addModal);
@@ -135,6 +138,18 @@ const TaskList = () => {
   return (
     <>
       <div className="w-2/3 mx-auto mt-28 pb-10">
+        {showSuccessMessage && (
+          <SuccessMessage
+            showSuccessMessage={showSuccessMessage}
+            setShowSuccessMessage={setShowSuccessMessage}
+          />
+        )}
+        {showErrorMessage && (
+          <ErrorMessage
+            showErrorMessage={showErrorMessage}
+            setShowErrorMessage={setShowErrorMessage}
+          />
+        )}
         <div className="flex justify-between ">
           <h2 className="text-2xl font-bold">Task List</h2>
           <button
@@ -194,7 +209,11 @@ const TaskList = () => {
         <div className="modal">
           <div className="overlay">
             <div className="modal-content">
-              <AddTask toggleAddModal={toggleAddModal} />
+              <AddTask
+                setShowSuccessMessage={setShowSuccessMessage}
+                setShowErrorMessage={setShowErrorMessage}
+                toggleAddModal={toggleAddModal}
+              />
             </div>
           </div>
         </div>
