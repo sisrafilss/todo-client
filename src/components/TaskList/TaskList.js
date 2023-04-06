@@ -8,6 +8,7 @@ import DialogBox from "../DialogBox/DialogBox";
 import TaskDetail from "../TaskDetail/TaskDetail";
 import SuccessMessage from "../SuccessMessage/SuccessMessage";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import axios from "axios";
 
 const tasksSample = [
   {
@@ -113,6 +114,7 @@ const TaskList = () => {
     setModalActive(!modalActive);
   };
 
+  // handle task detail modal
   const handleTaskDetail = (task, event) => {
     if (
       event.target.nodeName === "TD" &&
@@ -125,15 +127,18 @@ const TaskList = () => {
     console.log(event);
   };
 
+  // Hide scroll bar while modal is active
   if (modalActive) {
     document.body.classList.add("active-modal");
   } else {
     document.body.classList.remove("active-modal");
   }
 
-  // useEffect(() => {
-  //   setTasks(tasksSample);
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/all-tasks")
+      .then((res) => setTasks(res.data));
+  }, [addModal]);
 
   return (
     <>
@@ -171,7 +176,7 @@ const TaskList = () => {
             </tr>
           </thead>
           <tbody>
-            {tasksSample.map((task, idx) => (
+            {tasks.map((task, idx) => (
               <tr
                 key={idx}
                 className="cursor-pointer hover:bg-slate-100"
