@@ -38,12 +38,19 @@ const AddTask = ({
         alt=""
       />
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col ">
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Title
+        </label>
         <input
           className="border px-3 text-black opacity-90 py-2 mb-5 rounded w-full focus:outline-none"
           type="text"
           placeholder="Task Title"
           {...register("title")}
         />
+
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Description
+        </label>
         <textarea
           className="border px-3 py-2 text-black opacity-90 mb-5 rounded w-full focus:outline-none"
           name=""
@@ -52,11 +59,16 @@ const AddTask = ({
           placeholder="Task Description"
           {...register("description")}
         ></textarea>
+
+        <label className="block text-gray-700 text-sm font-bold mb-2">
+          Due Date
+        </label>
         <input
           className="border px-3 py-2 mb-5 text-black opacity-90 rounded w-full focus:outline-none"
           type="date"
           {...register("dueDate")}
         />
+
         <input
           type="submit"
           className="px-2 py-2 bg-slate-600 text-white rounded font-medium text-base cursor-pointer hover:bg-slate-700"

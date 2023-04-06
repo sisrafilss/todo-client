@@ -40,6 +40,9 @@ const EditTask = ({
           alt=""
         />
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col ">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Title
+          </label>
           <input
             className="border px-3 text-black opacity-90 py-2 mb-5 rounded w-full focus:outline-none"
             type="text"
@@ -47,6 +50,10 @@ const EditTask = ({
             defaultValue={editingTask?.title}
             {...register("title")}
           />
+
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Description
+          </label>
           <textarea
             className="border px-3 py-2 text-black opacity-90 mb-5 rounded w-full focus:outline-none"
             name=""
@@ -56,6 +63,10 @@ const EditTask = ({
             defaultValue={editingTask?.description}
             {...register("description")}
           ></textarea>
+
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Due Date
+          </label>
           <input
             className="border px-3 py-2 mb-5 text-black opacity-90 rounded w-full focus:outline-none"
             type="date"
